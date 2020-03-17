@@ -58,8 +58,4 @@ public class Voto {
 		return corso + ": " + voto + " (" + data + ")";
 	}
 	
-	
-	
-	
-
 }
