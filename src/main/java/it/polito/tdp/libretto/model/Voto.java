@@ -9,7 +9,7 @@ import java.time.LocalDate;
  * @author Eugenio
  *
  */
-public class Voto {
+public class Voto implements Comparable<Voto>{
 	
 	private String corso ; // "Tecniche di Programmazione"
 	private int voto ; // 28
@@ -27,6 +27,17 @@ public class Voto {
 		this.corso = corso;
 		this.voto = voto;
 		this.data = data;
+	}
+	
+	/**
+	 * Copy constructor di {@link Voto}: crea un nuovo {@link Voto} copiando il contenuto del paramentro {@code v}
+	 * 
+	 * @param v il voto da copiare
+	 */
+	public Voto(Voto v ) {
+		this.corso = v.corso; //Si copia il riferimento al corso / voto / data.. si puo' fare perche String e data
+		this.data = v.data; //sono immutabili, quindi non e' un problema copiare un riferimento (non esistono metodi
+		this.voto = v.voto; //per modificare gli attributi) per voto no problem perche' e' un tipo primitivo
 	}
 
 	public String getCorso() {
@@ -81,6 +92,19 @@ public class Voto {
 		} else if (!corso.equals(other.corso))
 			return false;
 		return true;
+	}
+	
+	/**
+	 * Crea un un nuovo oggetto che sia un clone di quello esistente
+	 */
+	public Voto clone() {
+		Voto v = new Voto(this.corso, this.voto, this.data);
+		return v;
+	}
+
+	@Override
+	public int compareTo(Voto other) {
+		return this.corso.compareTo(other.corso);
 	}
 	
 }
